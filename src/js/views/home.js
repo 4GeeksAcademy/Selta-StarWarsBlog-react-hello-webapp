@@ -7,7 +7,7 @@ import Card from "../component/card.js"
 export const Home = () => { 
 
 	const {store, actions} = useContext (Context);
-	const [isLoading, setIsLoading] = useState(false);
+	const [loading, setLoading] = useState (false)
 	
 	const handleInitialFetch = async () => {
 		await actions.getPeople();
@@ -22,9 +22,10 @@ export const Home = () => {
 	}
 
 	const handleAsyncCalls = async () => {
+		setLoading(true);
 		await handleInitialFetch();
 		await handleFetchDetails();
-		
+		setLoading (false);
 	}
 	
 	useEffect (() => {
@@ -37,15 +38,15 @@ export const Home = () => {
 	return  ( 
 		
 	
-	<div className="text-center mt-5">
-		<h1>Welcome to the StarWars Blogpedia </h1>
+	<div className="text-center" id="star">
+		<h1>Welcome to the Star Wars Blogpedia </h1>
 		
 					<div className="m-3 p-3" >
 						<h2>People:</h2>
 						<div className="d-flex overflow-auto" >	
 						{store.people.map((person) => (
 								<Card
-								key={person.uid}
+								key={`person-${person.uid}`}
 								uid={person.uid}
 								name={person.name}
 								linkPath="people"
@@ -54,12 +55,13 @@ export const Home = () => {
 						))}
 						</div>
 					</div>
-					<div>
+					
+					<div className="m-3 p-3" >
 						<h2>Planets:</h2>
 						<div className="d-flex overflow-auto" >	
 							{store.planets.map((planet) => (
 									<Card
-									key={planet.uid}
+									key={`planet-${planet.uid}`}
 									uid={planet.uid}
 									name={planet.name}
 									linkPath="planets"
@@ -67,13 +69,14 @@ export const Home = () => {
 									/>
 							))}
 						</div>
-					</div>
-					<div>
+						</div>
+					
+					<div className="m-3 p-3">
 						<h2>Starships: </h2>
 						<div className="d-flex overflow-auto" >	
 						{store.starships.map((starship) => (
 								<Card
-								key={starship.uid}
+								key={`starship-${starship.uid}`}
 								uid={starship.uid}
 								name={starship.name}
 								linkPath="starships"

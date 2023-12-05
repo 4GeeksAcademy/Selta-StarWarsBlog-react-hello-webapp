@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			people: [],
 			planets: [],
-			starships:[]
+			starships:[],
 		},
 		actions: {
 			getPeople: async () => {
@@ -34,34 +34,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 								const newPersonDetails = await Promise.all (store.people.map( async (person)=> {
 									const textResponse = await fetch (person.url);
 									const jsonResponse = await textResponse.json();
-									return {...person, details: jsonResponse.results};
+									return {...person, details: jsonResponse.result};
 								}));
 				
-				setStore({...store, people:newPersonDetails});
+				setStore({...store, people: newPersonDetails });
 			
 				
 			},
 			getPlanetDetails: async () => {
 				const store = getStore();
 				
-								const newPlanetDetails = await Promise.all (store.people.map( async (planet)=> {
+								const newPlanetDetails = await Promise.all (store.planets.map( async (planet)=> {
 									const textResponse = await fetch (planet.url);
 									const jsonResponse = await textResponse.json();
-									return {...planet, details: jsonResponse.results};
+									return {...planet, details: jsonResponse.result};
 								}));
 								
-								setStore({...store, planets:newPlanetDetails});
+								setStore({...store, planets: newPlanetDetails });
 			},
 			getStarshipDetails: async () => {
 				const store = getStore();
 								
-								const newStarshipDetails = await Promise.all (store.people.map( async (starship)=> {
+								const newStarshipDetails = await Promise.all (store.starships.map( async (starship)=> {
 									const textResponse = await fetch (starship.url);
 									const jsonResponse = await textResponse.json();
-									return {...starship, details: jsonResponse.results};
+									return {...starship, details: jsonResponse.result};
 								}));
 								
-								setStore({...store, starships:newStarshipDetails});
+								setStore({...store, starships: newStarshipDetails });
 			},
 		}
 	};

@@ -1,0 +1,44 @@
+#star {
+    background-color: #343a40;
+}
+body {
+    color: black;
+    
+}
+
+h1,h2 {
+font-family: 'Star Wars', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #9CFF39;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  ::-webkit-scrollbar-thumb:vertical {
+    background:transparent url('https://cloud.githubusercontent.com/assets/523933/9502647/9ffd8568-4c00-11e5-877e-4bbae5738792.png') no-repeat;
+    background-size:100%; 
+    height: 301px;
+    
+}
+::-webkit-scrollbar:vertical {
+    width: 25px;
+    background: #d2ff52;
+}

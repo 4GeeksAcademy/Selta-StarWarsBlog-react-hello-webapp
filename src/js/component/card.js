@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
     return (
         <div className="col-md-4 p-4 m-3">
-            <div className="card border" >
+            <div className="card border" id="cardBorder" >
                 <img src="https://placehold.co/400x200" className="card-img-top" alt="..." style={{ height: '200px', objectFit: 'cover' }} />
                 <div className="card-body d-flex flex-column justify-content-between">
                     <div>
