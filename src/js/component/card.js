@@ -3,7 +3,13 @@ import { Link } from 'react-router-dom';
 
  const Card = ({uid, name, linkPath, buttonText}) => {
 
-    //needs favorite
+    //needs favorite add toggle
+
+    const [favorite, setFavorite] = useState (false);
+
+    const handleFavorite = () => {
+        setFavorite (!favorite);
+    };
 
     return (
         <div className="col-md-4 p-4 m-3">
@@ -18,6 +24,8 @@ import { Link } from 'react-router-dom';
                             <Link to={`/details/${linkPath}/${uid}`} className="btn btn-success" >
                                 {buttonText}
                             </Link>
+                            <button onClick={handleFavorite} className={`btn btn-dark  &{favorite ? 'btn btn-light' : 'btn btn-dark' }`} > 
+                            {favorite? 'Remove from favorites' : 'Add to favorites' } </button>
                         </div>
                     </div>
                 </div>
