@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
+	const { actions, store } = useContext(Context);
+
+	
 	return (
 		<nav className="navbar navbar-light bg-dark">
 			<Link to="/">
@@ -11,9 +14,11 @@ export const Navbar = () => {
               	</button></span>
 			</Link>
 			<div className="mx-3">
-				<Link to="/contacts">
-					<button className="btn btn-light" id="contact" > <strong>Favorites</strong> </button>
-				</Link>
+				<div className="btn-group">
+					<button className="btn btn-light" id="contact" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+					Favorites {" "} {store.favorites.length }
+					</button> 
+				</div>
 			</div>
 		</nav>
 	);

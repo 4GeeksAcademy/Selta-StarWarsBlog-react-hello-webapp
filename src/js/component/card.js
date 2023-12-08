@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
  const Card = ({uid, name, linkPath, buttonText}) => {
@@ -7,9 +7,23 @@ import { Link } from 'react-router-dom';
 
     const [favorite, setFavorite] = useState (false);
 
+    //needs use effect
+    useEffect (() => {
+        const itemInFavorites = store.favorites.some ((favorite) => favorite.uid === uid && favorite.linkPath === linkPath);
+        setFavorite(itemInFavorites);
+
+    }, [store.favorites, uid, linkPath] );
+
+
     //how to link the actions properly
     const handleFavorite = () => {
-        setFavorite (!favorite);
+        setFavorite((prevFavorite) => !prevFavorite);
+        if (favorite) {
+          actions.removeFromFavorites(uid, linkPath);
+        } else {
+          const item = { uid, name, linkPath, buttonText };
+          actions.addToFavorites(item);
+        }
     };
 
     return (

@@ -11,7 +11,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				const textResponse = await fetch ("https://www.swapi.tech/api/people");
 				const jsonResponse = await textResponse.json ();
-				setStore({...store, people: jsonResponse.results })
+				setStore({...store, people: jsonResponse.results });
+
+				//how to store the main data in local storage?
+				localStorage.setItem ('starwars_local_data', JSON.stringify({ people: jsonResponse.results, planets: [], starships: []  }));
 
 			},
 			getPlanets: async () => {
@@ -19,6 +22,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const textResponse = await fetch ("https://www.swapi.tech/api/planets");
 				const jsonResponse = await textResponse.json();
 				setStore({...store, planets: jsonResponse.results })
+
+				localStorage.setItem ('starwars_local_data', JSON.stringify({ people:[] , planets: jsonResponse.results, starships: []  }));
+
 			},
 			
 			getStarships: async () => {
@@ -26,6 +32,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const textResponse = await fetch ("https://www.swapi.tech/api/starships");
 				const jsonResponse = await textResponse.json();
 				setStore({...store, starships: jsonResponse.results })
+
+				localStorage.setItem ('starwars_local_data', JSON.stringify({ people:[] , planets: [] , starships: jsonResponse.results  }));
+
 			},	
 			
 			
@@ -64,18 +73,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 								
 								setStore({...store, starships: newStarshipDetails });
 			},
-			addFavorite: () => {
+			addFavorite: (item) => {
 				const store = getStore();
-				const newFavorite = [...store.favorites];
+				const {uid, linkPath} = (item);
+				//this checks if item already exists in favorites
+				const itemInFavorites = store.favorites.some (fav => fav.uid === uid && fav.linkPath === linkPath );
 				
+				// filter creates a new array without the item if it exists
+				const newFavorite = itemInFavorites
+				? store.favorites.filter (fav => !(fav.uid === uid && fav.linkPath === linkPath)) : [...store.favorites, item]
+
 				setStore ({...store, favorites: newFavorite});
+				localStorage.setItem ('favorites',JSON.stringify(newFavorite));
+
 			},
 
-			removeFavorite: () => {
+			removeFavorite: (item) => {
 				const store = getStore();
-				const newFavorite = store.favorites ()
+				const {uid, linkPath} = (item);
+				const itemInFavorites = store.favorites.some (fav => fav.uid === uid && fav.linkPath === linkPath );
+				const newFavorite = itemInFavorites
+				
+				? store.favorites.filter (fav => !(fav.uid === uid && fav.linkPath === linkPath)) : [...store.favorites]
 
-			}
+				setStore ({...store, favorites: newFavorite});
+				localStorage.setItem ('favorites',JSON.stringify(newFavorite));
+
+			},
 		}
 	};
 };
