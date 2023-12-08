@@ -105,4 +105,3 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
-//how to local store?

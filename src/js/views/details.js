@@ -13,7 +13,7 @@ export const Details = () => {
 	console.log ("card" , cardData)
 	return (
 		<>
-		{cardData && (
+		{cardData && cardData.details && (
 			<>
 			{kind === "people" && (
 			<div> 

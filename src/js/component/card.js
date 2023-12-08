@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../store/appContext';
 
  const Card = ({uid, name, linkPath, buttonText}) => {
+    const { store, actions } = useContext(Context);
 
     //needs favorite add toggle
 
@@ -16,14 +18,17 @@ import { Link } from 'react-router-dom';
 
 
     //how to link the actions properly
-    const handleFavorite = () => {
-        setFavorite((prevFavorite) => !prevFavorite);
-        if (favorite) {
-          actions.removeFromFavorites(uid, linkPath);
+    const handleFavorite = (uid, name, linkPath, buttonText) => {
+
+        const newFavorite =!favorite;
+        setFavorite (newFavorite)
+        if (newFavorite) {
+            actions.addFavorite ({uid, name, linkPath, buttonText});
+
         } else {
-          const item = { uid, name, linkPath, buttonText };
-          actions.addToFavorites(item);
+            actions.removeFavorite ({uid, linkPath})
         }
+    
     };
 
     return (
@@ -39,7 +44,7 @@ import { Link } from 'react-router-dom';
                             <Link to={`/details/${linkPath}/${uid}`} className="btn btn-success" >
                                 {buttonText}
                             </Link>
-                            <button onClick={handleFavorite} className={`btn btn-dark  &{favorite ? 'btn btn-light' : 'btn btn-dark' }`} > 
+                            <button onClick={()=>handleFavorite(uid, name, linkPath, buttonText)} className={`btn btn-dark  &{favorite ? 'btn btn-light' : 'btn btn-dark' }`} > 
                             {favorite? 'Remove from favorites' : 'Add to favorites' } </button>
                         </div>
                     </div>
