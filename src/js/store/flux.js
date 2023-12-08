@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			people: [],
 			planets: [],
 			starships:[],
+			favorites:[],
 		},
 		actions: {
 			getPeople: async () => {
@@ -63,8 +64,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 								
 								setStore({...store, starships: newStarshipDetails });
 			},
+			addFavorite: () => {
+				const store = getStore();
+				const newFavorite = [...store.favorites];
+				
+				setStore ({...store, favorites: newFavorite});
+			},
+
+			removeFavorite: () => {
+				const store = getStore();
+				const newFavorite = store.favorites ()
+
+			}
 		}
 	};
 };
 
 export default getState;
+//how to local store?

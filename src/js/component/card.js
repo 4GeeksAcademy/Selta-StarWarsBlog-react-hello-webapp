@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
     const [favorite, setFavorite] = useState (false);
 
+    //how to link the actions properly
     const handleFavorite = () => {
         setFavorite (!favorite);
     };
