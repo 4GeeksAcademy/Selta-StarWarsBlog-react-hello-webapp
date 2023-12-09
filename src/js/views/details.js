@@ -16,32 +16,38 @@ export const Details = () => {
 		{cardData && cardData.details && (
 			<>
 			{kind === "people" && (
-			<div> 
-				<p>Name: {cardData.name} </p>			
-				<p>Skin color:{cardData.details.properties.skin_color} </p>
-				<p>Mass: {cardData.details.properties.mass} </p>
-				<p>Height: {cardData.details.properties.height} </p>				
-				<p> {cardData.details.description} </p>	
+			<div className="card col-6" > 
+				<div className="card-header"> {cardData.name} </div> 	
+				<ul className="list-group list-group-flush">
+				<li className="list-group-item" > Skin color: {cardData.details.properties.skin_color} </li>
+				<li className="list-group-item" > Mass: {cardData.details.properties.mass} </li>
+				<li className="list-group-item" > Height: {cardData.details.properties.height} </li>				
+				<li className="list-group-item" > {cardData.details.description} </li>	
+				</ul>
 			</div> 
 			)}
 			{kind === "planets" && (
-			<div>
-				<p>Name: {cardData.name} </p>
-				<p>Gravity:{cardData.details.properties.gravity} </p>
-				<p>Population {cardData.details.properties.population} </p>
-				<p>Terrain: {cardData.details.properties.terrain} </p>
-				<p>Climate: {cardData.details.properties.climate} </p>
-				<p> {cardData.details.description} </p>
+			<div className="card col-6" > 
+				<div className="card-header">Name: {cardData.name} </div>
+					<ul className="list-group list-group-flush">
+						<li className="list-group-item">Gravity: {cardData.details.properties.gravity} </li>
+						<li className="list-group-item">Population {cardData.details.properties.population} </li>
+						<li className="list-group-item">Terrain: {cardData.details.properties.terrain} </li>
+						<li className="list-group-item">Climate: {cardData.details.properties.climate} </li>
+						<li className="list-group-item"> {cardData.details.description} </li>
+					</ul> 
 			</div> 
 			)}
 			{kind === "starships" && (
-			<div>
-				<p>Name: {cardData.name} </p>
-				<p>Crew:{cardData.details.properties.crew} </p>
-				<p>Length {cardData.details.properties.length} </p>
-				<p>Model: {cardData.details.properties.model} </p>
-				<p>Starship Class: {cardData.details.properties.starship_class} </p>
-				<p> {cardData.details.description} </p>
+			<div className="card col-6" > 
+			<div className="card-header"> {cardData.name} </div>
+				<ul className="list-group list-group-flush">
+				<li className="list-group-item">Crew: {cardData.details.properties.crew} </li>
+				<li className="list-group-item">Length {cardData.details.properties.length} </li>
+				<li className="list-group-item">Model: {cardData.details.properties.model} </li>
+				<li className="list-group-item">Starship Class: {cardData.details.properties.starship_class} </li>
+				<li className="list-group-item"> {cardData.details.description} </li>
+				</ul> 
 			</div> 
 			)}
 			

@@ -1,0 +1,20 @@
+.card {
+    border: 2px solid #000;
+    background-color: #000;
+    color:#ffd700;
+}
+.card-header {
+    background-color: #000;
+    border-bottom: 2px solid #000;
+    font-size: 1.5rem;
+}
+
+.list-group-item {
+    background-color: #333;
+    color:#ffd700;
+    border: 1px solid #555;
+}
+
+.list-group-flush {
+    border-top: 2px solid #000;
+}
